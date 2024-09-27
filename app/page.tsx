@@ -76,7 +76,9 @@ export default function Home() {
       )
       .subscribe();
 
-    return () => supabase.channel("public:game_plays").unsubscribe();
+    return () => {
+      supabase.channel("public:messages").unsubscribe();
+    };
   }, []);
 
   const handleAddMessage = async () => {

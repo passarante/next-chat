@@ -55,29 +55,29 @@ export default function Home() {
       });
   }, []);
 
-  // useEffect(() => {
-  //   const supabase = supabaseBrowserClient();
-  //   supabase
-  //     .channel("public:messages")
-  //     .on(
-  //       "postgres_changes",
-  //       {
-  //         event: "*",
-  //         schema: "public",
-  //         table: "messages",
-  //       },
-  //       (payload) => {
-  //         if (payload.eventType === "INSERT") {
-  //           //router.refresh();
+  useEffect(() => {
+    const supabase = supabaseBrowserClient();
+    supabase
+      .channel("public:messages")
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "messages",
+        },
+        (payload) => {
+          if (payload.eventType === "INSERT") {
+            //router.refresh();
 
-  //           setMessages((prev) => [...prev, payload.new as MessageType]);
-  //         }
-  //       }
-  //     )
-  //     .subscribe();
+            setMessages((prev) => [...prev, payload.new as MessageType]);
+          }
+        }
+      )
+      .subscribe();
 
-  //   return () => supabase.channel("public:game_plays").unsubscribe();
-  // }, []);
+    return () => supabase.channel("public:game_plays").unsubscribe();
+  }, []);
 
   const handleAddMessage = async () => {
     const supabase = await supabaseBrowserClient();

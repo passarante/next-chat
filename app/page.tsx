@@ -35,8 +35,14 @@ const messagesData = [
   },
 ];
 
+type MessageType = {
+  id: string;
+  body: string;
+  username: string;
+  created_at: string;
+};
 export default function Home() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<MessageType[]>([]);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -45,7 +51,7 @@ export default function Home() {
       .from("messages")
       .select()
       .then((res) => {
-        setMessages(res.data);
+        setMessages(res.data as MessageType[]);
       });
   }, []);
 
@@ -64,7 +70,7 @@ export default function Home() {
           if (payload.eventType === "INSERT") {
             //router.refresh();
 
-            setMessages((prev) => [...prev, payload.new]);
+            setMessages((prev) => [...prev, payload.new as MessageType]);
           }
         }
       )

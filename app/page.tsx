@@ -116,7 +116,7 @@ export default function Home() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <Button onClick={handleAddMessage}>Send</Button>
+              <Button onClick={handleAddMessage}>Send Message</Button>
             </div>
           </div>
         </CardContent>

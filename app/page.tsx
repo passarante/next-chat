@@ -7,33 +7,33 @@ import { useEffect, useState } from "react";
 
 const users = ["gnydrm", "fsahinbas"];
 
-const messagesData = [
-  {
-    username: "gnydrm",
-    message: "What is the purpose of the `utils.py` file in our project?",
-    timestamp: "2023-02-20T14:30:00.000Z",
-  },
+// const messagesData = [
+//   {
+//     username: "gnydrm",
+//     message: "What is the purpose of the `utils.py` file in our project?",
+//     timestamp: "2023-02-20T14:30:00.000Z",
+//   },
 
-  {
-    username: "fsahinbas",
-    message:
-      "How do I fix the error \"Cannot read property 'length' of undefined\" in my JavaScript code?",
-    timestamp: "2023-02-20T14:35:00.000Z",
-  },
+//   {
+//     username: "fsahinbas",
+//     message:
+//       "How do I fix the error \"Cannot read property 'length' of undefined\" in my JavaScript code?",
+//     timestamp: "2023-02-20T14:35:00.000Z",
+//   },
 
-  {
-    user_id: "gnydrm",
-    message: "What is the syntax for creating a new branch in Git?",
-    timestamp: "2023-02-20T14:40:00.000Z",
-  },
+//   {
+//     user_id: "gnydrm",
+//     message: "What is the syntax for creating a new branch in Git?",
+//     timestamp: "2023-02-20T14:40:00.000Z",
+//   },
 
-  {
-    user_id: "fsahinbas",
-    message:
-      "I'm trying to implement a sorting algorithm in Python. Can you help me with the implementation?",
-    timestamp: "2023-02-20T14:45:00.000Z",
-  },
-];
+//   {
+//     user_id: "fsahinbas",
+//     message:
+//       "I'm trying to implement a sorting algorithm in Python. Can you help me with the implementation?",
+//     timestamp: "2023-02-20T14:45:00.000Z",
+//   },
+// ];
 
 type MessageType = {
   id: string;
@@ -82,7 +82,7 @@ export default function Home() {
   const handleAddMessage = async () => {
     const supabase = await supabaseBrowserClient();
 
-    const { error, data } = await supabase.from("messages").insert({
+    await supabase.from("messages").insert({
       username: users[Math.floor(Math.random() * users.length - 1)],
       body: message,
     });
